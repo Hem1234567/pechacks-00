@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PEC Hacks 4.0 | #1 Student Hackathon in Chennai, Tamil Nadu</title>
+  <meta name="description" content="Join PEC Hacks 4.0 (2026), Tamil Nadu's premier 36-hour international student hackathon at Panimalar Engineering College, Chennai. Innovate, code, collaborate, and win exciting prizes in AI & Web3." />
+  <meta name="keywords" content="PEC Hacks, PEC Hacks 4.0, hackathon in Chennai, Tamil Nadu hackathons, 36-hour hackathon, Panimalar Engineering College, student hackathon India, coding competition Chennai, tech innovation, developer contest, software development event, AI hackathon, Web3 hackathon, engineering hackathon Chennai, hackathon in Tamil Nadu" />
+  <meta name="author" content="Panimalar Engineering College - PEC Hacks Team" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://pechacks.org/" />
+  <link rel="alternate" href="https://pechacks.org/" hreflang="en" />
+  <link rel="alternate" href="https://pechacks.org/" hreflang="x-default" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pechacks.org/" />
+  <meta property="og:title" content="PEC Hacks 4.0 | #1 Student Hackathon in Chennai, Tamil Nadu" />
+  <meta property="og:description" content="Join PEC Hacks 4.0 (2026), Tamil Nadu's premier 36-hour international student hackathon at Panimalar Engineering College, Chennai. Innovate, code, collaborate, and win exciting prizes." />
+  <meta property="og:image" content="https://pechacks.org/pwa/opengraph-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="PEC Hacks 4.0 Hackathon Banner" />
+  <meta property="og:site_name" content="PEC Hacks 4.0" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@PECHacks" />
+  <meta name="twitter:creator" content="@PECHacks" />
+  <meta name="twitter:title" content="PEC Hacks 4.0 | #1 Student Hackathon in Chennai, Tamil Nadu" />
+  <meta name="twitter:description" content="Join Tamil Nadu's premier 36-hour student hackathon at Panimalar Engineering College, Chennai. Code, collaborate, and win exciting prizes." />
+  <meta name="twitter:image" content="https://pechacks.org/pwa/twitter-image.png" />
+  <meta name="twitter:image:alt" content="PEC Hacks 4.0 Twitter Banner" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/blanka" />
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxer01uj8/image/upload/v1782748679/uploads/image-converter/vkn4umc2cwhkidnw6yle.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <!-- Tailwind CSS v4 CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+  <!-- Embedded Custom Styles -->
+  <style>
+    :root {
+      --radius: 0.625rem;
+      --background: oklch(1 0 0);
+      --foreground: oklch(0.129 0.042 264.695);
+      --palette-black: #ffffff;
+      --palette-white: #000000;
+    }
+
+    .dark {
+      --background: oklch(0.129 0.042 264.695);
+      --foreground: oklch(0.984 0.003 247.858);
+      --palette-black: #000000;
+      --palette-white: #ffffff;
+    }
+
+    html, body {
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Inter', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: clip;
+      max-width: 100vw !important;
+      box-sizing: border-box !important;
+    }
+
+    * {
+      -webkit-user-select: none;
+      user-select: none;
+      box-sizing: inherit;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+    }
+
+    h1, h2, h3, h4, h5, h6 { font-family: inherit; }
+
+    .cta-wrap { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .cta-wrap:hover { transform: scale(1.08); }
+    .cta-ring { animation: ctaSpin var(--cta-spin-duration, 10s) linear infinite; transform-origin: center; }
+    .cta-wrap:hover .cta-ring { --cta-spin-duration: 3s; }
+    @keyframes ctaSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    #splash-cursor { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; pointer-events: none; }
+
+    @media (max-width: 1024px) {
+      a, button, input, select, textarea, [role="button"], .nav-link {
+        min-height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+      }
+    }
+
+    @media (max-width: 380px) {
+      html { font-size: 14px !important; }
+      h1, h2, h3, .text-[11vw] {
+        word-break: break-word;
+        hyphens: auto;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased overflow-x-hidden bg-black text-white dark">
+
+  <!-- Brand Logo -->
+  <div class="fixed top-6 left-6 md:top-8 md:left-10 z-50 pointer-events-none" style="mix-blend-mode: difference;">
+    <div role="heading" aria-level="2" class="text-2xl md:text-4xl tracking-[0.08em] text-white flex items-start" style="font-family: 'Blanka', sans-serif;">
+      PEC HACKS
+    </div>
+  </div>
+
+  <!-- Cursor Follower -->
+  <div id="cursor-follower" class="fixed top-0 left-0 w-6 h-6 bg-gray-400/50 rounded-full pointer-events-none z-[9999] hidden lg:block backdrop-blur-[1px] transform -translate-x-1/2 -translate-y-1/2"></div>
+
+  <!-- MLH Trust Badge -->
+  <a id="mlh-trust-badge" class="right-[90px] md:right-[120px]" style="display:block;max-width:100px;min-width:60px;position:fixed;top:0;width:10%;z-index:10000" href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank"><img src="https://logged-assets.s3.amazonaws.com/trust-badge/2027/mlh-trust-badge-2027-white.svg" alt="Major League Hacking 2026 Hackathon Season" style="width:100%"></a>
+
+  <!-- Nav Hamburger -->
+  <div class="fixed top-6 right-8 md:top-8 md:right-12 z-[200]">
+    <button id="nav-toggle" class="flex flex-col items-center justify-center gap-[5px] w-12 h-12 md:w-14 md:h-14 rounded-full bg-black transition-colors duration-300 relative" style="box-shadow: 0 0 0 1px color-mix(in srgb, var(--palette-white) 60%, transparent);" aria-label="Toggle navigation">
+      <span class="nav-line top-line absolute block h-[1.5px] w-[18px] bg-white origin-center" style="top: 35%;"></span>
+      <span class="nav-line mid-line absolute block h-[1.5px] w-[18px] bg-white origin-center" style="top: 50%; margin-top: -0.75px;"></span>
+      <span class="nav-line bot-line absolute block h-[1.5px] w-[18px] bg-white origin-center" style="bottom: 35%;"></span>
+    </button>
+  </div>
+
+  <!-- Nav Overlay -->
+  <div id="nav-overlay" class="fixed inset-0 z-[100] bg-black flex flex-col justify-between px-8 md:px-16 pt-16 pb-10 md:pt-20 md:pb-14" style="clip-path: inset(0% 0% 100% 0%);">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mb-4 pt-10 md:pt-0">
+      <p class="text-sm text-white/70 uppercase tracking-widest font-mono mr-2">Socials</p>
+      <a href="https://github.com/thecoding-society" target="_blank" rel="noreferrer" class="nav-social opacity-0 text-base md:text-lg font-medium text-white hover:opacity-40">GitHub</a>
+      <a href="https://www.linkedin.com/company/pec-hacks/" target="_blank" rel="noreferrer" class="nav-social opacity-0 text-base md:text-lg font-medium text-white hover:opacity-40">LinkedIn</a>
+      <a href="https://www.instagram.com/_pechacks/" target="_blank" rel="noreferrer" class="nav-social opacity-0 text-base md:text-lg font-medium text-white hover:opacity-40">Instagram</a>
+      <a href="mailto:team@pechacks.org" target="_blank" rel="noreferrer" class="nav-social opacity-0 text-base md:text-lg font-medium text-white hover:opacity-40">Email</a>
+    </div>
+    <div class="flex items-center justify-end mb-2">
+      <button id="theme-toggle-btn" class="flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10 cursor-pointer" aria-label="Toggle theme">
+        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <span id="theme-toggle-text" class="uppercase tracking-widest text-xs">Light</span>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-0">
+      <div class="overflow-hidden border-b border-white/25 py-3 md:py-4">
+        <a href="#about" class="nav-link flex items-baseline justify-between group cursor-pointer translate-y-[40px] opacity-0">
+          <span class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-3 transition-transform duration-300 ease-out">About</span>
+          <span class="text-xs text-white/55 font-mono tracking-widest self-start mt-2">01</span>
+        </a>
+      </div>
+      <div class="overflow-hidden border-b border-white/25 py-3 md:py-4">
+        <a href="#domains" class="nav-link flex items-baseline justify-between group cursor-pointer translate-y-[40px] opacity-0">
+          <span class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-3 transition-transform duration-300 ease-out">Domains</span>
+          <span class="text-xs text-white/55 font-mono tracking-widest self-start mt-2">02</span>
+        </a>
+      </div>
+      <div class="overflow-hidden border-b border-white/25 py-3 md:py-4">
+        <a href="#timeline" class="nav-link flex items-baseline justify-between group cursor-pointer translate-y-[40px] opacity-0">
+          <span class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-3 transition-transform duration-300 ease-out">Timeline</span>
+          <span class="text-xs text-white/55 font-mono tracking-widest self-start mt-2">03</span>
+        </a>
+      </div>
+      <div class="overflow-hidden border-b border-white/25 py-3 md:py-4">
+        <a href="#prizes" class="nav-link flex items-baseline justify-between group cursor-pointer translate-y-[40px] opacity-0">
+          <span class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-3 transition-transform duration-300 ease-out">Prizes</span>
+          <span class="text-xs text-white/55 font-mono tracking-widest self-start mt-2">04</span>
+        </a>
+      </div>
+      <div class="overflow-hidden border-b border-white/25 py-3 md:py-4">
+        <a href="#partners" class="nav-link flex items-baseline justify-between group cursor-pointer translate-y-[40px] opacity-0">
+          <span class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-3 transition-transform duration-300 ease-out">Partners</span>
+          <span class="text-xs text-white/55 font-mono tracking-widest self-start mt-2">05</span>
+        </a>
+      </div>
+      <div class="hidden overflow-hidden border-b border-white/25 py-3 md:py-4">
+        <a href="#team" class="nav-link flex items-baseline justify-between group cursor-pointer translate-y-[40px] opacity-0">
+          <span class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-3 transition-transform duration-300 ease-out">Team</span>
+          <span class="text-xs text-white/55 font-mono tracking-widest self-start mt-2">06</span>
+        </a>
+      </div>
+      <div class="overflow-hidden border-b border-white/25 py-3 md:py-4">
+        <a href="#faqs" class="nav-link flex items-baseline justify-between group cursor-pointer translate-y-[40px] opacity-0">
+          <span class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-3 transition-transform duration-300 ease-out">FAQs</span>
+          <span class="text-xs text-white/55 font-mono tracking-widest self-start mt-2">07</span>
+        </a>
+      </div>
+    </nav>
+    <p class="nav-copyright opacity-0 text-xs text-white/20 font-mono tracking-widest mt-8 md:mt-0 md:self-end">© 2026 PEC HACKS</p>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="relative h-screen bg-black flex flex-col px-6 py-12 md:px-16 md:py-16 z-20 overflow-hidden" id="hero">
+    <canvas id="splash-cursor"></canvas>
+
+    <div class="absolute z-20 hidden md:flex flex-col items-center" style="right: 64px; top: 112px; bottom: 194px; justify-content: center; gap: 1rem;">
+      <span class="w-[1px] h-8 bg-white/30 flex-shrink-0"></span>
+      <a href="https://www.instagram.com/_pechacks/" target="_blank" rel="noreferrer" class="group flex-shrink-0" style="writing-mode: vertical-rl; text-orientation: mixed;">
+        <span class="font-black text-[10px] tracking-[0.22em] uppercase text-white group-hover:opacity-100 transition-opacity duration-300">Instagram</span>
+      </a>
+      <a href="https://x.com/PECHacks" target="_blank" rel="noreferrer" class="group flex-shrink-0" style="writing-mode: vertical-rl; text-orientation: mixed;">
+        <span class="font-black text-[10px] tracking-[0.22em] uppercase text-white group-hover:opacity-100 transition-opacity duration-300">Twitter</span>
+      </a>
+      <a href="https://www.linkedin.com/company/pec-hacks/" target="_blank" rel="noreferrer" class="group flex-shrink-0" style="writing-mode: vertical-rl; text-orientation: mixed;">
+        <span class="font-black text-[10px] tracking-[0.22em] uppercase text-white group-hover:opacity-100 transition-opacity duration-300">LinkedIn</span>
+      </a>
+      <span class="w-[1px] h-8 bg-white/30 flex-shrink-0"></span>
+    </div>
+
+    <div class="absolute md:z-30 lg:z-10 hidden md:flex items-center justify-center" style="bottom: 4rem; right: 4rem;">
+      <a href="#contact" class="cta-wrap group relative flex items-center justify-center w-[130px] h-[130px]" aria-label="Get in touch">
+        <svg viewBox="0 0 130 130" class="absolute inset-0 w-full h-full pointer-events-none">
+          <circle cx="65" cy="65" r="62" fill="none" stroke="var(--palette-white)" stroke-opacity="0.6" stroke-width="1.5" />
+        </svg>
+        <svg viewBox="0 0 130 130" class="cta-ring absolute inset-0 w-full h-full pointer-events-none">
+          <defs>
+            <path id="cta-circle-path" d="M65,65 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" />
+          </defs>
+          <text fill="var(--palette-white)" font-size="8.5" font-family="'Inter', sans-serif" font-weight="900" letter-spacing="4">
+            <textPath href="#cta-circle-path">GET IN TOUCH · GET IN TOUCH · GET IN TOUCH ·&nbsp;</textPath>
+          </text>
+        </svg>
+        <span class="absolute inset-4 rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" style="transform-origin: center;"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="relative z-10 w-6 h-6 text-white group-hover:text-black transition-colors duration-300">
+          <path d="M7 17L17 7M17 7H7M17 7v10" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="z-10 my-auto flex flex-col gap-5 md:gap-12 w-full items-center" id="hero-text">
+      <h1 class="text-white uppercase text-center opacity-0 translate-y-20 leading-[0.85] tracking-tight text-[11vw] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl whitespace-nowrap" style="font-family: 'Blanka', 'Inter', sans-serif; letter-spacing: 0.04em;">
+        PEC HACKS 4.0
+        <span class="sr-only"> — Premier 36-Hour Student Hackathon in Chennai, Tamil Nadu</span>
+      </h1>
+
+      <div id="hero-subtext" class="flex flex-col items-center gap-6 md:gap-10 max-w-4xl">
+        <div class="flex flex-col items-center justify-center gap-1 md:flex-row md:flex-wrap md:items-center md:gap-x-3 text-sm md:text-base lg:text-lg font-medium text-white/85 tracking-wide uppercase">
+          <span class="whitespace-nowrap">Premier Hackathon in Chennai, Tamil Nadu</span>
+          <span class="hidden md:inline opacity-50">·</span>
+          <span class="whitespace-nowrap">36 Hours</span>
+          <span class="hidden md:inline opacity-50">·</span>
+          <span class="whitespace-nowrap">Aug 29–30, 2026</span>
+        </div>
+
+        <div class="flex flex-col items-center gap-3 w-full md:w-auto md:gap-4">
+          <div class="flex flex-col items-center gap-3 w-full md:flex-row md:w-auto md:gap-4 md:justify-center">
+            <a href="https://three.pechacks.org/" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center w-full max-w-[280px] md:w-auto rounded-full border border-white/40 bg-white text-black px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white/90 transition">
+              Visit 3.0
+            </a>
+            <a href="https://chat.whatsapp.com/CTYNtrMUimc2FFngECiL46" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center w-full max-w-[280px] md:w-auto rounded-full border border-white/40 text-white px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">
+              Join our Community
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-nowrap justify-center md:justify-start gap-2 md:gap-5" id="countdown-container">
+          <div class="flex flex-col items-center justify-center rounded-xl md:rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-3 py-2 md:px-6 md:py-4 min-w-[66px] md:min-w-[110px]">
+            <span class="text-2xl md:text-5xl font-black text-white tabular-nums leading-none" id="cd-days">00</span>
+            <span class="mt-1 md:mt-2 text-[9px] md:text-xs font-bold uppercase tracking-widest text-white/60">Days</span>
+          </div>
+          <div class="flex flex-col items-center justify-center rounded-xl md:rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-3 py-2 md:px-6 md:py-4 min-w-[66px] md:min-w-[110px]">
+            <span class="text-2xl md:text-5xl font-black text-white tabular-nums leading-none" id="cd-hours">00</span>
+            <span class="mt-1 md:mt-2 text-[9px] md:text-xs font-bold uppercase tracking-widest text-white/60">Hours</span>
+          </div>
+          <div class="flex flex-col items-center justify-center rounded-xl md:rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-3 py-2 md:px-6 md:py-4 min-w-[66px] md:min-w-[110px]">
+            <span class="text-2xl md:text-5xl font-black text-white tabular-nums leading-none" id="cd-mins">00</span>
+            <span class="mt-1 md:mt-2 text-[9px] md:text-xs font-bold uppercase tracking-widest text-white/60">Minutes</span>
+          </div>
+          <div class="flex flex-col items-center justify-center rounded-xl md:rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-3 py-2 md:px-6 md:py-4 min-w-[66px] md:min-w-[110px]">
+            <span class="text-2xl md:text-5xl font-black text-white tabular-nums leading-none" id="cd-secs">00</span>
+            <span class="mt-1 md:mt-2 text-[9px] md:text-xs font-bold uppercase tracking-widest text-white/60">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- External Animation Library (GSAP) & Shaders -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="./js/index4.js"></script>
+  <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
+
+  <!-- Embedded JavaScript for Home Section Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Theme Toggle ---
+      const themeToggleBtn = document.getElementById('theme-toggle-btn');
+      const themeText = document.getElementById('theme-toggle-text');
+      const themeIconSun = document.getElementById('theme-icon-sun');
+      const themeIconMoon = document.getElementById('theme-icon-moon');
+      
+      let isDark = localStorage.getItem('theme') !== 'light';
+      
+      function updateTheme() {
+        document.documentElement.classList.toggle('dark', isDark);
+        if (isDark) {
+          document.body.classList.add('bg-black', 'text-white');
+          document.body.classList.remove('bg-white', 'text-black');
+          if (themeText) themeText.textContent = 'Dark';
+          if (themeIconSun) themeIconSun.style.display = 'block';
+          if (themeIconMoon) themeIconMoon.style.display = 'none';
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('bg-black', 'text-white');
+          document.body.classList.add('bg-white', 'text-black');
+          if (themeText) themeText.textContent = 'Light';
+          if (themeIconSun) themeIconSun.style.display = 'none';
+          if (themeIconMoon) themeIconMoon.style.display = 'block';
+          localStorage.setItem('theme', 'light');
+        }
+      }
+      
+      updateTheme();
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          isDark = !isDark;
+          updateTheme();
+        });
+      }
+
+      // --- Countdown Timer ---
+      const targetDate = new Date("2026-08-29T00:00:00").getTime();
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMins = document.getElementById('cd-mins');
+      const elSecs = document.getElementById('cd-secs');
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = Math.max(0, targetDate - now);
+        
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff / 3600000) % 24);
+        const minutes = Math.floor((diff / 60000) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        
+        const pad = (n) => String(n).padStart(2, "0");
+        
+        if (elDays) elDays.textContent = pad(days);
+        if (elHours) elHours.textContent = pad(hours);
+        if (elMins) elMins.textContent = pad(minutes);
+        if (elSecs) elSecs.textContent = pad(seconds);
+      }
+      
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      // --- Cursor Follower ---
+      const cursor = document.getElementById('cursor-follower');
+      if (cursor) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        const speed = 0.15;
+
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        const animateCursor = () => {
+          cursorX += (mouseX - cursorX) * speed;
+          cursorY += (mouseY - cursorY) * speed;
+          cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0)`;
+          requestAnimationFrame(animateCursor);
+        };
+        animateCursor();
+      }
+
+      // --- Navigation Overlay Animations ---
+      const navToggle = document.getElementById('nav-toggle');
+      const navOverlay = document.getElementById('nav-overlay');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const navSocials = document.querySelectorAll('.nav-social');
+      const navCopyright = document.querySelector('.nav-copyright');
+      let navOpen = false;
+
+      if (typeof gsap !== 'undefined' && navToggle && navOverlay) {
+        let navTimeline = gsap.timeline({ paused: true });
+
+        navTimeline
+          .to(navOverlay, {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            duration: 1,
+            ease: "power4.inOut"
+          })
+          .to(navLinks, {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power3.out"
+          }, "-=0.6")
+          .to(navSocials, {
+            y: 0,
+            opacity: 1,
+            stagger: 0.08,
+            duration: 0.8,
+            ease: "power3.out"
+          }, "-=0.8")
+          .to(navCopyright, {
+            opacity: 1,
+            duration: 0.8
+          }, "-=0.5");
+
+        navToggle.addEventListener('click', () => {
+          navOpen = !navOpen;
+          if (navOpen) {
+            gsap.to('.top-line', { rotation: 45, y: 6.5, scaleX: 0.8, duration: 0.6, ease: "power3.out" });
+            gsap.to('.mid-line', { opacity: 0, scaleX: 0, duration: 0.4, ease: "power3.out" });
+            gsap.to('.bot-line', { rotation: -45, y: -6.5, scaleX: 0.8, duration: 0.6, ease: "power3.out" });
+            document.body.style.overflow = "hidden";
+            navTimeline.timeScale(1).play();
+          } else {
+            gsap.to('.top-line', { rotation: 0, y: 0, scaleX: 1, duration: 0.6, ease: "power3.out" });
+            gsap.to('.mid-line', { opacity: 1, scaleX: 1, duration: 0.4, ease: "power3.out" });
+            gsap.to('.bot-line', { rotation: 0, y: 0, scaleX: 1, duration: 0.6, ease: "power3.out" });
+            document.body.style.overflow = "";
+            navTimeline.timeScale(1.5).reverse();
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (navOpen) navToggle.click();
+          });
+        });
+
+        // --- Hero Entrance Animation ---
+        gsap.to('#hero-text h1', { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.2 });
+        gsap.from('#hero-subtext', { opacity: 0, y: 20, duration: 0.8, ease: "power3.out", delay: 0.4 });
+      } else {
+        // Fallback if GSAP fails to load
+        const h1 = document.querySelector('#hero-text h1');
+        const subtext = document.getElementById('hero-subtext');
+        if (h1) { h1.style.opacity = '1'; h1.style.transform = 'none'; }
+        if (subtext) { subtext.style.opacity = '1'; subtext.style.transform = 'none'; }
+      }
+    });
+  </script>
+</body>
+</html>
