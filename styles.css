@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/transformers-2');
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -119,7 +121,28 @@ h1, h2, h3, h4, h5, h6 { font-family: inherit; }
 .scroll-stack-inner { perspective: 1500px; padding: 10vh 0 0; display: flex; flex-direction: column; align-items: center; }
 
 .star-border-container { display: inline-block; position: relative; border-radius: 60px; overflow: hidden; padding: 2px; }
-.border-gradient-full { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; z-index: 0; animation: star-rotate linear infinite; filter: blur(8px); }
+.border-gradient-full { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; z-index: 0; animation: star-rotate linear infinite; filter: blur(8px); transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+
+/* Mobile: the rotating blurred gradient behind each Domains card is what caused the
+   stutter/glitch on phones — large-area filter:blur() has to be re-rasterized on every
+   animation frame, and doing that at the same time the scroll-driven stacking transform
+   is updating (every scroll tick) is more than low/mid-end mobile GPUs can keep up with.
+   Laptops have enough GPU headroom to hide this; phones don't. Shrinking the blurred
+   layer and softening the blur cuts the per-frame raster cost dramatically, and pausing
+   the rotation while the user is actively scrolling removes the moment both animations
+   compete for the same frame budget. */
+@media (max-width: 768px) {
+  .border-gradient-full {
+    width: 140%;
+    height: 140%;
+    top: -20%;
+    left: -20%;
+    filter: blur(4px);
+  }
+  body.is-scrolling .border-gradient-full {
+    animation-play-state: paused;
+  }
+}
 .inner-content { position: relative; background: var(--palette-black); border-radius: 58px; width: 100%; height: 100%; z-index: 1; }
 @keyframes star-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
@@ -421,7 +444,6 @@ html, body {
     height: auto !important;
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
-    border-top: 4px solid var(--palette-black) !important;
   }
   #bridge-svg-container {
     display: none !important;
@@ -491,13 +513,14 @@ html, body {
 .cp-carousel-track {
   display: flex;
   width: max-content;
-  animation: cpMarqueeScroll 110s linear infinite;
+  animation: cpMarqueeScroll 35s linear infinite;
   will-change: transform;
 }
 
-.cp-carousel-wrapper:hover .cp-carousel-track,
-.cp-carousel-track:hover {
-  animation-play-state: paused;
+.cp-carousel-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
 }
 
 @media (max-width: 640px) {
@@ -506,63 +529,232 @@ html, body {
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
   }
   .cp-carousel-track {
-    animation-duration: 85s;
+    animation-duration: 25s;
   }
 }
 
-/* ==========================================
-   GALLERY SCROLL SCENE — support styles
-   (Core visual styles are injected by gallery.js)
-   ========================================== */
-
-/* Hide any leftover decorative elements */
-.gallery-header,
-.stars-layer,
-.scan-line {
-  display: none !important;
+/* Hexagon clip-path and aspect ratio */
+.gallery-hex-container {
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  margin: calc(-18% / 1.732) 0;
+  /* Fixed numeric ratio (sqrt(3)/2 ≈ 0.866) instead of calc(sqrt()) —
+     CSS trig functions aren't supported in every mobile browser/WebView,
+     and since this container's children are all position:absolute, a
+     failed aspect-ratio means the container collapses to 0 height, which
+     is why the whole gallery could disappear on some mobile devices. */
+  aspect-ratio: 0.866;
+  /* Skip layout/paint work for tiles that are off-screen so scrolling
+     through the gallery doesn't have to render all 18 tiles every frame. */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 220px;
 }
 
-/* Ensure the scroll outer wrapper doesn't cause x-overflow */
-#gallerySectionOuter {
-  overflow-x: hidden;
+/* 3D Flip Card specific properties */
+.gallery-flip-card {
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
 }
 
-/* The sticky frame fills the viewport exactly */
-#galleryStickyEl {
-  position: sticky;
-  top: 0;
+.gallery-hex-container:hover .gallery-flip-card {
+  transform: rotateY(180deg);
+}
+
+.gallery-flip-front,
+.gallery-flip-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.gallery-flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Mobile & Tablet Responsive Margins & Staggered Grid Positions */
+@media (max-width: 600px) {
+  .gallery-hex-container {
+    margin: calc(-12% / 1.732) 0;
+  }
+
+  /* First row of 3 */
+  .gallery-hex-container:nth-child(1) { grid-column: 1 / span 2; }
+  .gallery-hex-container:nth-child(2) { grid-column: 3 / span 2; }
+  .gallery-hex-container:nth-child(3) { grid-column: 5 / span 2; }
+
+  /* Second row of 2 */
+  .gallery-hex-container:nth-child(4) { grid-column: 2 / span 2; }
+  .gallery-hex-container:nth-child(5) { grid-column: 4 / span 2; }
+
+  /* Third row of 3 */
+  .gallery-hex-container:nth-child(6) { grid-column: 1 / span 2; }
+  .gallery-hex-container:nth-child(7) { grid-column: 3 / span 2; }
+  .gallery-hex-container:nth-child(8) { grid-column: 5 / span 2; }
+
+  /* Fourth row of 2 */
+  .gallery-hex-container:nth-child(9) { grid-column: 2 / span 2; }
+  .gallery-hex-container:nth-child(10) { grid-column: 4 / span 2; }
+
+  /* Fifth row of 3 */
+  .gallery-hex-container:nth-child(11) { grid-column: 1 / span 2; }
+  .gallery-hex-container:nth-child(12) { grid-column: 3 / span 2; }
+  .gallery-hex-container:nth-child(13) { grid-column: 5 / span 2; }
+
+  /* Sixth row of 2 */
+  .gallery-hex-container:nth-child(14) { grid-column: 2 / span 2; }
+  .gallery-hex-container:nth-child(15) { grid-column: 4 / span 2; }
+
+  /* Seventh row of 3 */
+  .gallery-hex-container:nth-child(16) { grid-column: 1 / span 2; }
+  .gallery-hex-container:nth-child(17) { grid-column: 3 / span 2; }
+  .gallery-hex-container:nth-child(18) { grid-column: 5 / span 2; }
+}
+
+@media (max-width: 400px) {
+  .gallery-hex-container {
+    margin: calc(-10% / 1.732) 0;
+  }
+}
+
+/* ===== Desktop Inline Navbar ===== */
+#desktop-nav {
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+#desktop-nav.scrolled {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.desktop-nav-link {
+  position: relative;
+  letter-spacing: 0.2em;
+}
+.desktop-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1.5px;
+  background: #fff;
+  transition: width 0.25s ease;
+}
+.desktop-nav-link:hover::after {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+.desktop-nav-link.active {
+  color: #fff;
+}
+.desktop-nav-link.active::after {
+  width: 100%;
 }
 
-/* The black overlay */
-#galleryBlackOverlay {
-  position: fixed;
-  bottom: 0;
+
+.photo-grid {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-start;
+  opacity: 0.22;
+  z-index: 1;
+  pointer-events: none;
+  /* Apply grayscale + contrast at grid level — cheaper than per-img filter */
+  filter: grayscale(1) contrast(1.05);
+  transform: translateZ(0);
+  will-change: opacity;
+}
+.photo-col {
+  position: relative;
+  width: 33.34%;
+  height: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  /* Promote to own GPU layer */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style;
+}
+.photo-col::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6));
+  z-index: 2;
+}
+.photo-col.edge-fade-l::before,
+.photo-col.edge-fade-r::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+.photo-col.edge-fade-l::before {
+  background: linear-gradient(90deg, #000 0%, transparent 40%);
+}
+.photo-col.edge-fade-r::before {
+  background: linear-gradient(90deg, transparent 60%, #000 100%);
+}
+.photo-strip {
+  position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: #000;
-  transform-origin: bottom center;
-  transform: scaleY(0);
-  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* GPU compositing for smooth animation */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+.photo-strip img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  /* No per-img filter — handled at .photo-grid level */
+}
+.photo-strip.scroll-down {
+  animation: scrollDown 40s linear infinite;
+}
+.photo-strip.scroll-up {
+  animation: scrollUp 40s linear infinite;
+}
+@keyframes scrollDown {
+  0%   { transform: translate3d(0, -50%, 0); }
+  100% { transform: translate3d(0, 0%,   0); }
+}
+@keyframes scrollUp {
+  0%   { transform: translate3d(0, 0%,   0); }
+  100% { transform: translate3d(0, -50%, 0); }
+}
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.75) 100%);
 }
-
-/* hexRows must NOT have conflicting width constraints.
-   margin:auto (all sides) — not "0 auto" — so it centers vertically in
-   whatever space is left after the title, not just horizontally. */
-#hexRows {
-  position: relative !important;
-  margin: auto !important;
-  /* width / height set by gallery.js dynamically */
+.hero-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 3px);
+  opacity: 0.4;
 }
-
+/* Cheap soft overlay — replaces expensive backdrop-filter: blur */
+.hero-blur-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.18);
+}
+@media (max-width: 700px) {
+  .photo-col { width: 33.34%; }
+  .photo-strip img { height: 170px; }
+}
 
 

@@ -13,12 +13,26 @@
         syncTouch: false,
         touchMultiplier: isCoarsePointer ? 1 : 0.7,
     });
+    window.lenis = lenis; // expose for scroll-to-top button
     
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
     });
     gsap.ticker.lagSmoothing(0, 0);
+
+    // Mark active scrolling on <body>. On mobile, CSS uses this to pause the rotating
+    // blurred border behind the Domains stack cards, so it isn't competing with the
+    // scroll-driven stacking transform for the same animation frame (see styles.css).
+    let scrollStopTimer;
+    document.body.classList.add('is-scrolling');
+    const markScrollStopped = () => document.body.classList.remove('is-scrolling');
+    scrollStopTimer = setTimeout(markScrollStopped, 150);
+    lenis.on('scroll', () => {
+        document.body.classList.add('is-scrolling');
+        clearTimeout(scrollStopTimer);
+        scrollStopTimer = setTimeout(markScrollStopped, 150);
+    });
 
     // 2. Cursor Follower
     const cursor = document.getElementById('cursor-follower');
@@ -185,12 +199,57 @@
         updateNavbarBg();
     }
 
+    // Desktop navbar: transparent → black on scroll
+    const desktopNav = document.getElementById('desktop-nav');
+    if (desktopNav) {
+        const updateDesktopNav = () => {
+            if (window.scrollY > 60) {
+                desktopNav.classList.add('scrolled');
+            } else {
+                desktopNav.classList.remove('scrolled');
+            }
+        };
+        window.addEventListener('scroll', updateDesktopNav, { passive: true });
+        lenis.on('scroll', updateDesktopNav);
+        updateDesktopNav();
+    }
+
+    // Desktop nav scroll-spy: highlight active section link
+    const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
+    if (desktopNavLinks.length) {
+        const sectionIds = ['about', 'domains', 'timeline', 'prizes', 'partners', 'faqs'];
+        const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+        const setActive = (id) => {
+            desktopNavLinks.forEach(link => {
+                if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        };
+
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActive(entry.target.id);
+                }
+            });
+        }, {
+            rootMargin: '-40% 0px -55% 0px',
+            threshold: 0
+        });
+
+        sections.forEach(sec => spyObserver.observe(sec));
+    }
+
     // 4. Scroll Animations (Hero & About)
     gsap.registerPlugin(ScrollTrigger);
 
     // Hero Entry
-    gsap.to('#hero-text h1', { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.2 });
-    gsap.to('#hero-subtext div', { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", delay: 0.6 });
+    gsap.to('#hero-text h1', { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: 0 });
+    gsap.to('#hero-subtext div', { opacity: 1, x: 0, duration: 0.7, ease: "power3.out", delay: 0.3 });
 
     // About Section (Stacking Scroll logic)
     const aboutContainer = document.getElementById('about'); // the invisible spacer

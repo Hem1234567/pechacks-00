@@ -141,6 +141,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // --- Gallery Hexagonal Layout ---
+  const galleryPattern = [5, 4, 5, 4];
+  const TOTAL_COLS = 12;
+
+  function applyGalleryLayout() {
+    const gridItems = document.querySelectorAll(".gallery-hex-container");
+    const isMobile = window.innerWidth <= 600;
+
+    if (isMobile) {
+      // Below 600px, styles.css takes over with its own nth-child grid-column
+      // rules for the honeycomb pattern. If we don't clear any inline
+      // grid-column left over from a wider viewport (e.g. after resizing the
+      // window or rotating a device), that inline style wins over the CSS
+      // rule and the gallery can end up broken/invisible on mobile.
+      gridItems.forEach((item) => {
+        item.style.gridColumn = "";
+      });
+      return;
+    } else {
+      let row = 0;
+      let inRowIndex = 0;
+
+      gridItems.forEach((item) => {
+        const perRow = galleryPattern[row % galleryPattern.length];
+        const occupiedCols = perRow * 2;
+        const leftOffset = Math.floor((TOTAL_COLS - occupiedCols) / 2);
+        const startCol = leftOffset + 1 + inRowIndex * 2;
+        item.style.gridColumn = `${startCol} / span 2`;
+
+        inRowIndex++;
+        if (inRowIndex >= perRow) {
+          row++;
+          inRowIndex = 0;
+        }
+      });
+    }
+  }
+
+  window.addEventListener("resize", applyGalleryLayout);
+  applyGalleryLayout();
+
   // Load GSAP & External Scripts sequentially
   function loadScript(src) {
     return new Promise((resolve, reject) => {
@@ -158,9 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   (async () => {
     try {
-      // GSAP + ScrollTrigger are already loaded once in index.html (v3.12.5).
-      // Re-loading a second copy here overwrote window.gsap/ScrollTrigger and
-      // orphaned the gallery's ScrollTrigger. Reuse the existing instance.
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js");
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js");
       await loadScript("https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js");
       await loadScript("./js/splashCursor.js");
       await loadScript("./js/script.js");
